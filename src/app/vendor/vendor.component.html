@@ -1,0 +1,141 @@
+<div id="mainContainer">
+    <table class="" cellspacing="0" cellpadding="2" width="100%">
+        <tr>
+            <td width="50%">
+                <div class="col-lg-4">
+                    Static content
+                </div>
+            </td>
+            <td width="50%">
+                <table class="" cellspacing="0"  cellpadding="2" width="100%">
+                    <tr>
+                        <td width="50%">
+
+                        </td>
+                        <td width="50%">
+                            <table class="" cellspacing="0" cellpadding="2" width="100%">
+                                <tr>
+                                    <td width="50%" align="right">
+                                        <button mat-button [matMenuTriggerFor]="beforeMenu">More</button>
+                                        <mat-menu #beforeMenu="matMenu" xPosition="before">
+                                            <button mat-menu-item>Export</button>
+                                            <button mat-menu-item>Mark as exported</button>
+                                            <mat-divider></mat-divider>
+                                            <button mat-menu-item>Setup Vendor</button>
+                                            <mat-divider></mat-divider>
+                                            <button mat-menu-item>
+                                                <span style="width:40%">
+                                                    Flag Invoice
+                                                </span>
+                                                <span class="pull-right">
+                                                    <mat-icon>flag</mat-icon>
+                                                </span>
+                                            </button>
+                                            <button mat-menu-item>
+                                                Archive Invoice
+                                                <mat-icon>archive</mat-icon>
+                                            </button>
+                                            <button mat-menu-item>
+                                                Delete Invoice
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                        </mat-menu>
+                                    </td>
+                                    <td width="50%" align="right">
+                                        <button mat-stroked-button class="btn btn-primary">Approve</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-accordion class="example-headers-align" >
+                                <mat-expansion-panel [expanded]="panelExpanded" (opened)="panelExpanded=true" (closed)="panelExpanded=false">
+                                    <mat-expansion-panel-header id="expPanel">
+                                        <mat-panel-title>
+                                            <h3 class="bFont">Freguesia Cheese</h3>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    
+                                </mat-expansion-panel>
+                              </mat-accordion>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="" *ngIf="panelExpanded">
+                                <table class="" width="100%">
+                                    <tr>
+                                        <td>Invoice No.</td>
+                                        <td>Invoice Type</td>
+                                        <td>Restaurant</td>
+                                        <td>Sub Total</td>
+                                        <td>$1300.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>0003526</td>
+                                        <td>Receipt</td>
+                                        <td>Monty's Cheese Shop</td>
+                                        <td>Tax</td>
+                                        <td>$26.32.00</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div *ngIf="!panelExpanded">
+                                <table class="" width="100%">
+                                    <tr>
+                                        <td>00003526</td>
+                                        <td>July 09, 2017</td>
+                                        <td>Monty's Cheese Shop</td>
+                                        <td>Loren</td>
+                                        <td>Total</td>
+                                        <td>$10,000.00</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <mat-tab-group animationDuration="0ms">
+                                <mat-tab label="Line Items">
+                                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="100%">
+                                        <ng-container matColumnDef="position">
+                                          <th mat-header-cell *matHeaderCellDef> Name </th>
+                                          <td mat-cell *matCellDef="let element"> {{element.name}} <br> {{element.sub}}</td>
+                                        </ng-container>
+                                      
+                                        <ng-container matColumnDef="name">
+                                          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                                          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                                        </ng-container>
+                                      
+                                        <ng-container matColumnDef="weight">
+                                          <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+                                          <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+                                        </ng-container>
+                                      
+                                        <ng-container matColumnDef="symbol">
+                                          <th mat-header-cell *matHeaderCellDef> Total </th>
+                                          <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                                        </ng-container>
+                                      
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                      </table>
+                                </mat-tab>
+                                <mat-tab label="History">Content 2</mat-tab>
+                              </mat-tab-group>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<style>
+    ::ng-deep .mat-expansion-panel-header-description, .mat-expansion-indicator::after{
+        color: black !important;
+    }
+</style>
